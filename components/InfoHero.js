@@ -6,6 +6,7 @@ import {
   View,
   Image,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 
@@ -17,7 +18,15 @@ const InfoHero = props => {
       <ScrollView>
         <View style={styles.center}>
           <SharedElement id={`${index}.icon`}>
-            <Image source={{uri: item.icone}} style={styles.icon} />
+            <ImageBackground
+              source={{uri: item.icone}}
+              imageStyle={{borderRadius: 50}}
+              style={styles.cadre}>
+              <Image
+                source={require('./../src/banner/b2.png')}
+                style={styles.icon}
+              />
+            </ImageBackground>
           </SharedElement>
           <Text>
             {item.name}, {item.type}
@@ -29,9 +38,10 @@ const InfoHero = props => {
           <Text>ATK : {item.atk}</Text>
           <Text>CRIT : {item.crit}</Text>
           <Text>MAG : {item.mag}</Text>
+        </View>
+        <View>
           <Text>Histoire :</Text>
           <Text>{item.story}</Text>
-          <Text>Artwork :</Text>
         </View>
         <Image source={{uri: item.picture}} style={styles.art} />
       </ScrollView>
@@ -44,12 +54,17 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     paddingHorizontal: 10,
+    fontSize: 2,
+  },
+  cadre: {
+    width: 100,
+    height: 100,
   },
   icon: {
     width: 100,
     height: 100,
     resizeMode: 'contain',
-    marginBottom: 15,
+    borderRadius: 8,
   },
   art: {
     width: '100%',
